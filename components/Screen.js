@@ -5,20 +5,20 @@ import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import Chat from "./Chat";
 
 function Screen(props) {
-    let editorContent = ""
+    
     const sel = useRef();
     const fnt = useRef();
     const tgt = useRef();
     const iul = useRef();
+    const editorDiv = useRef();
     const [comit,addComit] = useState(false);
     const [addingImage, setAddImage] = useState(false);
     const [tight, setTight] = useState('normal');
     const [editorScale, setScale] = useState(100);
     const [fontStyle, setFontStyle] = useState('sans');
-    const editorDiv = useRef();
     const [fontSize, setFontSize] = useState(3);
     const [textAlign, setTextAlign] = useState('left');
-
+    let editorContent = ""
     useEffect(() => {
         editorDiv.current.focus();
     }, []);
@@ -171,7 +171,7 @@ function Screen(props) {
                     {/* <div className="hover:bg-gray-300 rounded-sm p-1">
                         <Image src='/link.png' alt='marker' height={18} width={18} />
                     </div> */}
-                    <div onClick={() => { addComit(!comit) }} className="hover:bg-gray-300 rounded-sm p-1">
+                    <div onClick={() => { props.setShowComment(!props.showComment) }} className="hover:bg-gray-300 rounded-sm p-1">
                         <Image src='/chat.png' alt='marker' height={16} width={16} />
                     </div>
                     <div className="relative">
@@ -218,7 +218,7 @@ function Screen(props) {
                         </div>
                     </div> : null}
                     <div className="w-1/5">
-                        <Comment comit={comit} addComit={addComit} />
+                        <Comment comit={props.showComment} addComit={props.setShowComment} />
                     </div>
                     <div className={`w-3/5 scale-x-${editorScale} print:w-full min-h-screen h-full bg-white outline outline-1 outline-gray-200 border border-gray-300 p-16 pb-0 border border-white`}>
                         <GrammarlyEditorPlugin clientId="client_VbBxTAR6euDX3wam8YLwZe">

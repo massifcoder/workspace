@@ -4,9 +4,9 @@ const { Configuration, OpenAIApi } = require("openai");
 
 export default function Chat() {
 
-    const [messages,setMessage] = useState([]);
     const msgInpt = useRef();
     const chatArea = useRef();
+    const [messages,setMessage] = useState([]);
     const [readon,setReadOn] = useState(false)
     const sendMsg = async () =>{
         let question = msgInpt.current.value;

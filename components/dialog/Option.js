@@ -1,4 +1,5 @@
 import { useRouter } from "next/router"
+import * as docx from 'docx'
 
 export default function Option(props){
     
@@ -28,8 +29,7 @@ export default function Option(props){
         props.shareHandle(true);
     }
     const Download = ()=>{
-        // How to download it as doc file.
-        
+        const doc = new docx.Document();
     }
     const Rename = () =>{
         props.titleRef.current.focus();

@@ -1,11 +1,22 @@
 import Image from "next/image"
 import Link from "next/link";
 import { useRef, useState } from "react";
+import Option from "./dialog/Option";
 
 function NavBar(props) {
     const inpref = useRef();
-    const [showfile, setShowFile] = useState(false);
-    const [showEdit, seShowEdit] = useState(false);
+    const sendRef = useRef();
+    const titleRef = useRef();
+    const fileOption = ['New','Open','Save','Share','Email','Download','Rename','Move','Move to Trash','Page Setup','Page Preview','Print']
+    const editOption = ['Undo','Redo','Cut','Copy','Paste','Paste without Formatting','Select All','Delete','Find And Replace']
+    const viewOption = ['Mode','Show Print Layout','Show Rule','Show Outline','Show Equation','Toolbar','Full Screen']
+    const insertOption = ['Image','Table','Drawing','Chart','Horizontal Line','Emoji','Header','Footer','Break']
+    const formatOption = ['Text','Style','Align','Column']
+    const toolOption = ['Spelling','Word Count','Review','Dictionary','Translate']
+    const extensionOption = ['Add Ons','App Script']
+    const helpOption = ['Help','Docs']
+    const [showFile, setShowFile] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
     const [showView, setShowView] = useState(false);
     const [showInsert, setShowInsert] = useState(false);
     const [showFormat, setShowFormat] = useState(false);
@@ -14,14 +25,25 @@ function NavBar(props) {
     const [showHelp, setShowHelp] = useState(false);
     const [showAccount, setShowAccount] = useState(false);
     const [showShare, setShowShare] = useState(false);
-    const shareHandle = () => {
-        setShowShare(false)
+    const shareHandle = async () => {
         let email_id = inpref.current.value;
-        fetch('/api/share',{method:'POST',body:JSON.stringify({email:email_id})}).then((response)=>{
+        sendRef.current.innerHTML = '<svg class="animate-spin h-5 w-5 mr-3 bg-white border border-2 rounded-md border-blue-800" viewBox="0 0 24 24"></svg>Sending'
+        await fetch('/api/share',{method:'POST',body:JSON.stringify({email:email_id})}).then((response)=>{
             return response
         }).then((response)=>{
-            console.log(response)
+            if(response.status === 200 ){
+                sendRef.current.innerHTML = 'Sent'
+                setShowShare(false)
+            }
+            else{
+                sendRef.current.innerHTML = '<div className="text-red-500">Error...</div>'
+                setTimeout(()=>{
+                    setShowShare(false);
+                },3000)
+            }
             return response
+        }).catch(error=>{
+            return error;
         })
     }
     return (
@@ -33,7 +55,7 @@ function NavBar(props) {
                 <div>
                     <div className="flex text-gray-500 text-xl">
                         <div className="mx-2">
-                            <input type='text' placeholder='Untitled Document' className="outline outline-0" />
+                            <input ref={titleRef} type='text' placeholder='Untitled Document' className="outline outline-0" />
                         </div>
                         <div className="mx-2">
                             <Image src='/star.png' alt="star" width={20} height={20} />
@@ -41,108 +63,84 @@ function NavBar(props) {
                     </div>
                     <div className="flex mx-1 text-sm text-gray-800">
                         <div>
-                            <div onMouseDown={() => { setShowFile(!showfile) }} className="px-1 select-none hover:bg-gray-200 rounded-sm">File</div>
-                            {showfile ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">New</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Open</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Make a Copy</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Share</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Email</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Download</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Rename</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Move</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Shortcut to Drive</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Move to Trash</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Share</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Page Setup</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Page Preview</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Print</div>
-                            </div> : null}
+                            <div onMouseDown={() => { setShowFile(!showFile) }} className="px-1 select-none hover:bg-gray-200 rounded-sm">File</div>
+                            {showFile ? <div onMouseLeave={()=>{setShowFile(!showFile)}} className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                                {
+                                    fileOption.map((value)=>{
+                                        return (<Option titleRef={titleRef} shareHandle={setShowShare} inpref={inpref} onclick={()=>{setShowFile(!showFile)}} option={value} />
+                                        )
+                                    })
+                                }
+                                </div> : null}
                         </div>
                         <div>
-                            <div onMouseDown={() => { seShowEdit(!showEdit) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Edit</div>
-                            {showEdit ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Undo</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Redo</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Cut</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Copy</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Paste</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Paste without Formatting</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Select All</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Delete</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Find And Replace</div>
+                            <div onMouseDown={() => { setShowEdit(!showEdit) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Edit</div>
+                            {showEdit ? <div onMouseLeave={()=>{setShowEdit(!showEdit)}} className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                                {
+                                    editOption.map(value=>{
+                                        return <Option onclick={()=>{setShowEdit(!showEdit)}} option={value}/>
+                                    })
+                                }    
                             </div> : null}
                         </div>
                         <div>
                             <div onMouseDown={() => { setShowView(!showView) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">View</div>
-                            {showView ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Mode</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Show Print Layout</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Show Ruler</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Show Outline</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Show Equation Toolbar</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Full Screen</div>
+                            {showView ? <div onMouseLeave={()=>{setShowView(!showView)}} className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                                {
+                                    viewOption.map(value=>{
+                                        return <Option onclick={()=>{setShowView(!showView)}} option={value}/>
+                                    })
+                                }    
                             </div> : null}
                         </div>
                         <div>
                             <div onMouseDown={() => { setShowInsert(!showInsert) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Insert</div>
-                            {showInsert ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Image</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Table</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Drawing</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Chart</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Horizontal Line</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Emoji</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Header</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Footer</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Break</div>
+                            {showInsert ? <div onMouseLeave={()=>{setShowInsert(!showInsert)}} className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                                {
+                                    insertOption.map(value=>{
+                                        return <Option onclick={()=>{setShowInsert(!showInsert)}} option={value}/>
+                                    })
+                                }
                             </div> : null}
                         </div>
                         <div>
                             <div onMouseDown={() => { setShowFormat(!showFormat) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Format</div>
-                            {showFormat ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Text</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Style</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Align</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Column</div>
+                            {showFormat ? <div onMouseLeave={()=>{setShowFormat(!showFormat)}} className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                            {
+                                    formatOption.map(value=>{
+                                        return <Option onclick={()=>{setShowFormat(!showFormat)}} option={value}/>
+                                    })
+                                }
                             </div> : null}
                         </div>
                         <div>
                             <div onMouseDown={() => { setShowTools(!showTools) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Tools</div>
-                            {showTools ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Spelling</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Word Count</div>
-                                <hr />
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Review</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Dictionary</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Translate</div>
+                            {showTools ? <div onMouseLeave={()=>{setShowTools(!showTools)}} className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                            {
+                                    toolOption.map(value=>{
+                                        return <Option onclick={()=>{setShowTools(!showTools)}} option={value}/>
+                                    })
+                                }
                             </div> : null}
                         </div>
                         <div>
                             <div onMouseDown={() => { setShowExtensions(!showExtensions) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Extensions</div>
-                            {showExtensions ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Add ons</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">App Script</div>
+                            {showExtensions ? <div onMouseLeave={()=>{setShowExtensions(!showExtensions)}} className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                                {
+                                    extensionOption.map(value=>{
+                                        return <Option onclick={()=>{setShowExtensions(!showExtensions)}} option={value}/>
+                                    })
+                                }    
                             </div> : null}
                         </div>
                         <div>
                             <div onMouseDown={() => { setShowHelp(!showHelp) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Help</div>
-                            {showHelp ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Help</div>
-                                <div className="mx-4 hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">Docs</div>
+                            {showHelp ? <div onMouseLeave={()=>{setShowHelp(!showHelp)}} className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                                {
+                                    helpOption.map(value=>{
+                                        return <Option onclick={()=>{setShowHelp(!showHelp)}} option={value}/>
+                                    })
+                                }
                             </div> : null}
                         </div>
                         <div className="text-gray-500 underline px-4">Last edit was <input type="text" className="underline w-5 text-center" onChange={() => { }} value={'0'} ref={props.lastEdit} /> min ago</div>
@@ -177,7 +175,8 @@ function NavBar(props) {
                                 <input ref={inpref} type="text" className="p-1 h-fit px-4 rounded-full outline outline-1.5 outline-blue-400" />
                             </div>
                             <div className="flex my-2">
-                                <div onClick={shareHandle} className="rounded-full cursor-pointer mx-2 px-3 p-1 bg-[#c2e7ff] text-gray-700">Send</div>
+                                <div onClick={shareHandle} ref={sendRef} className="flex rounded-full cursor-pointer mx-2 px-3 p-1 bg-[#c2e7ff] ">
+                                Send</div>
                                 <div onClick={() => { setShowShare(false) }} className="rounded-full mx-2 text-blue-800 cursor-pointer outline outline-1 outline-gray-600 px-3 p-1 text-gray-700">Cancel</div>
                             </div>
                         </div>

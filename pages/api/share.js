@@ -17,11 +17,11 @@ export default async function Share(req,res){
         from: 'massifcoder@gmail.com',
         to: email_id,
         subject: 'You are Invited to Work Together.',
-        text: 'Mr. Shubham Maurya, Sishal Sharma has invited you to work with them on the Nanda Doc word file, follow the link to start work https://localhost:3000/file.',
+        text: 'Respected, Vishal Sharma has invited you to work with him on the Nanda Doc word file, follow the link to start work https://localhost:3000/file.',
       };
       try {
         const info = await transporter.sendMail(message);
-        console.log(info.response)
+        console.log(info)
         res.status(200).json({ message: `Email sent: ${info.response}` });
       } catch (error) {
         console.error(error);

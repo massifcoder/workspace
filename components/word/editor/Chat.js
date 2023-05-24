@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-const { Configuration, OpenAIApi } = require("openai");
 
-export default function Chat() {
+export default function Chat(props) {
 
     const msgInpt = useRef();
     const chatArea = useRef();
@@ -37,14 +36,14 @@ export default function Chat() {
 
     return (
         <div className="relative p-2 print:hidden m-1 shadow shadow-2xl rounded-2xl my-2 outline outline-1 outline-gray-300">
-            <div className="bg-white outline outline-1 outline-gray-300 shadow shadow-xl p-3 rounded-2xl flex">
-                <Image src={'/asd.webp'} alt="asd" height={50} width={50} className="mx-2"/>
+            <div  onClick={ ()=>{setChat(!showChat)}} className="bg-white select-none outline outline-1 outline-gray-300 shadow shadow-xl p-3 rounded-2xl flex">
+                <Image src={'/word/asd.webp'} alt="asd" height={50} width={50} className="mx-2"/>
                 <div className="text-gray-600">
-                    <div className="text-xl">Vishal Sharma</div>
+                    <div className="text-xl">{localStorage.getItem('fname')}</div>
                     <div className="text-xs">This is AI built chatbot.</div>
                 </div>
-                <div onClick={ ()=>{setChat(!showChat)}} className="bg-gray-200 mt-2 ml-6 rounded-full h-full w-fit">
-                    <Image src={ showChat ? '/drop.png' : '/cross.png' } alt="cross" height={20} width={20}/>
+                <div className="bg-gray-200 mt-2 ml-6 rounded-full h-full w-fit">
+                    <Image src={ showChat ? '/word/drop.png' : '/cross.png' } alt="cross" height={20} width={20}/>
                 </div>
             </div>
             <div ref={chatArea} className={`my-2 p-3 ${showChat ? 'hidden' : ''} rounded-2xl h-60 flex flex-col overflow-auto`}>
@@ -59,7 +58,7 @@ export default function Chat() {
                 <div className="bg-gray-100 outline outline-1 outline-gray-300 p-2 rounded-2xl flex">
                     <input readOnly={readon} ref={msgInpt} onKeyDown={handleEnterKey} type="text" placeholder="Type here..." className="bg-transparent outline outline-0"/>
                     <div onMouseDown={sendMsg}>
-                        <Image src={'/send.png'} height={40} width={40} alt="send"/>
+                        <Image src={'/word/send.png'} height={40} width={40} alt="send"/>
                     </div>
                 </div>
             </div>

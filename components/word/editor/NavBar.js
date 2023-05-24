@@ -2,8 +2,11 @@ import Image from "next/image"
 import Link from "next/link";
 import { useRef, useState } from "react";
 import Option from "./dialog/Option";
+import { useRouter } from "next/router";
+import Account from "../../common/account";
 
 function NavBar(props) {
+    const router = useRouter();
     const inpref = useRef();
     const sendRef = useRef();
     const titleRef = useRef();
@@ -50,7 +53,7 @@ function NavBar(props) {
         <div className="print:hidden relative flex justify-between text-gray-600 ">
             <div className="flex justify-center items-center space-y-2 p-2">
                 <Link href={'/word'} className="p-2 ">
-                    <Image src="/word.png" alt="logo" width={40} height={40} />
+                    <Image src="/word/word.png" alt="logo" width={40} height={40} />
                 </Link>
                 <div>
                     <div className="flex text-gray-500 text-xl">
@@ -58,7 +61,7 @@ function NavBar(props) {
                             <input ref={titleRef} type='text' placeholder='Untitled Document' className="outline outline-0" />
                         </div>
                         <div className="mx-2">
-                            <Image src='/star.png' alt="star" width={20} height={20} />
+                            <Image src='/word/star.png' alt="star" width={20} height={20} />
                         </div>
                     </div>
                     <div className="flex mx-1 text-sm text-gray-800">
@@ -149,18 +152,18 @@ function NavBar(props) {
             </div>
             <div className="flex items-center">
                 <Link href={'/finance'} className="mx-4">
-                    <Image src='/increase.png' alt="increase" width={25} height={25} />
+                    <Image src='/word/increase.png' alt="increase" width={25} height={25} />
                 </Link>
                 <div className="mx-4" onMouseDown={props.setShowComment}>
-                    <Image src='/comment.png' alt="comment" width={30} height={30} />
+                    <Image src='/word/comment.png' alt="comment" width={30} height={30} />
                 </div>
                 <Link href={'/focus'} className="mx-4">
-                    <Image src='/hangout.png' alt="hangout" width={30} height={30} />
+                    <Image src='/word/hangout.png' alt="hangout" width={30} height={30} />
                 </Link>
                 <div className="relative">
                     <div onClick={() => { setShowShare(!showShare)}} className="flex select-none mx-4 bg-blue-600 rounded-md py-1 space-x-1 justify-between text-white items-center px-3">
                         <div className="bg-white rounded-full">
-                            <Image src='/padlock.png' alt="share" width={20} height={20} />
+                            <Image src='/word/padlock.png' alt="share" width={20} height={20} />
                         </div>
                         <div>
                             Share
@@ -183,32 +186,8 @@ function NavBar(props) {
                     </div>:null}
                 </div>
                 <div onMouseLeave={()=>{setShowAccount(false)}} className="mx-6 relative">
-                    <Image onMouseDown={() => { setShowAccount(!showAccount) }} src='/user.png' alt="user" width={30} height={30} />
-                    {showAccount ? <div  className="absolute bg-[#f3f6fc] z-50 rounded-2xl outline outline-1 outline-blue-400 right-0">
-                        <div className="flex items-center m-4 rounded-2xl bg-white">
-                            <Image src={'/asd.webp'} alt="user" height={40} width={40} className="m-2" />
-                            <div className="w-60">
-                                <h1>Vishal Sharma</h1>
-                                <p className="text-xs text-gray-500">vishalsharma243527@gmail.com</p>
-                            </div>
-                        </div>
-                        <div className="text-center text-sm mx-4 select-none">Sign Out of all accounts</div>
-                        <div className="text-center text-sm mx-4 select-none">Add Another Accounts</div>
-                        <div className="flex items-center m-4 rounded-2xl">
-                            <Image src={'/dpp.jpg'} alt="user" height={40} width={40} className="m-2 rounded-full" />
-                            <div className="w-60">
-                                <h1>Radhika Sharma</h1>
-                                <p className="text-xs text-gray-500">radhasharma243527ji@gmail.com</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center m-4 rounded-2xl">
-                            <Image src={'/user.png'} alt="user" height={40} width={40} className="m-2 rounded-full" />
-                            <div className="w-60">
-                                <h1>Anchal Sharma</h1>
-                                <p className="text-xs text-gray-500">anchalsharma243527ji@gmail.com</p>
-                            </div>
-                        </div>
-                    </div> : null}
+                    <Image onMouseDown={() => { setShowAccount(!showAccount) }} src='/word/user.png' alt="user" width={30} height={30} />
+                    {showAccount ? <Account/> : null}
                 </div>
 
             </div>

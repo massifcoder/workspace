@@ -10,7 +10,6 @@ function Screen(props) {
     const fnt = useRef();
     const tgt = useRef();
     const iul = useRef();
-    const [comit,addComit] = useState(false);
     const [addingImage, setAddImage] = useState(false);
     const [tight, setTight] = useState('normal');
     const [editorScale, setScale] = useState(100);
@@ -97,16 +96,16 @@ function Screen(props) {
             <div className="print:hidden flex text-gray-800 text-xs justify-between items-center">
                 <div className="flex items-center space-x-4 items-center ml-6">
                     <div className="hover:bg-gray-300 rounded-sm p-1" onClick={(event)=>{editHandler(event,'undo')}}>
-                        <Image src='/undo1.png' alt='undo' height={15} width={15} />
+                        <Image src='/word/undo1.png' alt='undo' height={15} width={15} />
                     </div>
                     <div className="hover:bg-gray-300 rounded-sm p-1"  onClick={(event)=>{editHandler(event,'redo')}}>
-                        <Image src='/redo1.png' alt='redo' height={15} width={15} />
+                        <Image src='/word/redo1.png' alt='redo' height={15} width={15} />
                     </div>
                     <div onClick={handlePrint} className="hover:bg-gray-300 rounded-sm p-1">
-                        <Image src='/print1.png' alt='printer' height={20} width={20} />
+                        <Image src='/word/print1.png' alt='printer' height={20} width={20} />
                     </div>
                     <div className="hover:bg-gray-300 rounded-sm p-1">
-                        <Image src='/spell-check.png' alt='undo' height={20} width={20} />
+                        <Image src='/word/spell-check.png' alt='undo' height={20} width={20} />
                     </div>
                     <div>
                         |
@@ -171,24 +170,24 @@ function Screen(props) {
                         <Image src='/link.png' alt='marker' height={18} width={18} />
                     </div> */}
                     <div onClick={() => { props.setShowComment(!props.showComment) }} className="hover:bg-gray-300 rounded-sm p-1">
-                        <Image src='/chat.png' alt='marker' height={16} width={16} />
+                        <Image src='/word/chat.png' alt='marker' height={16} width={16} />
                     </div>
                     <div className="relative">
                         <div onClick={() => { setAddImage(!addingImage) }} className="hover:bg-gray-300 rounded-sm p-1">
-                            <Image src='/insert_image.png' alt='marker' height={16} width={16} />
+                            <Image src='/word/insert_image.png' alt='marker' height={16} width={16} />
                         </div>
                     </div>
                     <div>
                         |
                     </div>
                     <div className="hover:bg-gray-300 rounded-sm p-1" onMouseDown={(event) => { alignHandler(event, 'left') }}>
-                        <Image src='/align-left.png' alt='marker' height={16} width={16} />
+                        <Image src='/word/align-left.png' alt='marker' height={16} width={16} />
                     </div>
                     <div className="hover:bg-gray-300 rounded-sm p-1" onMouseDown={(event) => { alignHandler(event, 'center') }}>
-                        <Image src='/center-align.png' alt='marker' height={16} width={16} />
+                        <Image src='/word/center-align.png' alt='marker' height={16} width={16} />
                     </div>
                     <div className="hover:bg-gray-300 rounded-sm p-1" onMouseDown={(event) => { alignHandler(event, 'right') }}>
-                        <Image src='/right-align.png' alt='marker' height={16} width={16} />
+                        <Image src='/word/right-align.png' alt='marker' height={16} width={16} />
                     </div>
                 </div>
                 {/* </div> */}

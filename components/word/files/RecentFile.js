@@ -18,7 +18,7 @@ export default function RecentFile(props) {
                         <div className="grid grid-cols-2 space-x-2">
                             <div>{props.value.modify}</div>
                             <div className="relative">
-                                <Image alt="setting" onMouseDown={setingShow} src={'/temp/dot.png'} className="p-1" height={10} width={20} />
+                                <Image alt="setting" onMouseDown={setingShow} src={'/word/temp/dot.png'} className="p-1" height={10} width={20} />
                                 {show ? <div className="absolute flex flex-col space-y-2 text-center bg-white left-4 p-4 rounded-xl outline outline-1 outline-gray-400">
                                     <Link href={'/word/file'}>
                                         <h1 className="text-blue-500">Edit</h1>

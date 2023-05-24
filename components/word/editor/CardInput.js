@@ -8,7 +8,7 @@ export default function CardInput(props){
         const options = { timeZone: 'Asia/Kolkata',day:'numeric', month:'short',year:'2-digit' };
         const indianDateTime = date.toLocaleString('en-US', options);
         let comt = inpref.current.value;
-        let coment = {text:comt,time:indianDateTime,user:'Vishal Sharma'}
+        let coment = {text:comt,time:indianDateTime,user:localStorage.getItem('fname')}
         props.setComment([...props.comments,coment]);
         props.addComit(false)
     }
@@ -16,10 +16,10 @@ export default function CardInput(props){
         <div className="bg-white rounded-xl shadow shadow-2xl p-3">
             <div className="flex items-center">
                 <div>
-                    <Image height={25} alt="image" className="m-1" width={35} src={'/user.png'}/>
+                    <Image height={25} alt="image" className="m-1" width={35} src={'/word/user.png'}/>
                 </div>
                 <div className=" m-1">
-                    <div className="text-md">Vishal Sharma</div>
+                    <div className="text-md">{localStorage.getItem('fname')}</div>
                 </div>
             </div>
             <div className="text-md m-2">

@@ -5,10 +5,10 @@ export default function Preview(){
         <div className="w-1/4 px-6">
             <h1 className="font-bold text-xl text-center my-4">File Preview</h1>
             <div className="m-4 outline outline-2 p-6 outline-gray-300 mt-4 rounded-xl">
-                <Image src={'/temp/doc.png'} alt="temp" height={260} width={200}/>
+                <Image src={'/word/temp/doc.png'} alt="temp" height={260} width={200}/>
             </div>
             <div className="text-xl flex space-x-2 mx-4">
-                <Image src={'/temp/doc.png'} alt="doc" height={26} width={26}/>
+                <Image src={'/word/temp/doc.png'} alt="doc" height={26} width={26}/>
                 <div className="font-bold">Design Sprint.docx</div>
             </div>
             <hr className="mt-6 mb-3"/>

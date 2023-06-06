@@ -14,5 +14,5 @@ export default async function ReceiveMail(req,res){
         res.status(200).json({staus:'ok',response:documents})
         return;
     }
-    // res.status(500).json({status:'no'})
+    res.status(500).json({status:'no'})
 }

@@ -15,14 +15,14 @@ export default function DoCaller(props) {
     }
 
     useEffect(() => {
-        callRing.play();
-        setTimeout(() => {
-            CancelCall();
-        }, 10000);
+        // callRing.play();
+        // setTimeout(() => {
+        //     CancelCall();
+        // }, 10000);
 
-        return () =>{
-            callRing.pause();
-        }
+        // return () =>{
+        //     callRing.pause();
+        // }
 
     }, [])
 

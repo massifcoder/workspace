@@ -50,7 +50,7 @@ export default function Mail() {
             <div className="rounded-3xl bg-white w-full h-full flex">
                 <LeftSide showInbox={showInbox} setShowInbox={setShowInbox} mails={latMails} sendMail={sendMail} setShowCompose={setShowCompose} showCompose={showCompose} />
                 <CenterSide sendMail={sendMail} showInbox={showInbox} setSendSelect={setSendSelect} setShowCompose={setShowCompose} mails={latMails} setSelected={setSelected} />
-                <RightSide showInbox={showInbox} sendMail={sendMail} showCompose={showCompose} setShowCompose={setShowCompose} sendSelected={sendSelected} selected={selected} mails={latMails} />
+                <RightSide showInbox={showInbox} sendMail={sendMail} showCompose={showCompose} setShowCompose={setShowCompose} sendSelected={sendSelected} selected={selected} mails={latMails} setLatMails={setLatMails} setSelected={setSelected}/>
             </div>
         </div>
     )

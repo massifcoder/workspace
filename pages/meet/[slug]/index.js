@@ -4,7 +4,7 @@ import MySelf from "../../../components/meet/myself";
 import Other from "../../../components/meet/other";
 import SideBar from "../../../components/meet/sideBar";
 import Chat from "../../../components/meet/chat";
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import DoCaller from "../../../components/meet/doCaller";
 import { useRouter } from "next/router"
 
@@ -27,6 +27,7 @@ export default function Meeting(){
         return <h1>Loading...</h1>
     }
     else if(slugs.slug.toString()[0]==='g'){
+        // Getting the call.
         return (
             <div className="bg-[#1a1225] text-white min-h-screen w-screen h-fit">
                 <Header/>  

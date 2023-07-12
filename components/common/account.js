@@ -23,15 +23,15 @@ export default function Account(props){
                         <div className="flex items-center m-4 rounded-2xl">
                             <Image src={'/word/dpp.jpg'} alt="user" height={40} width={40} className="m-2 rounded-full" />
                             <div className="w-60">
-                                <h1>Radhika Sharma</h1>
-                                <p className="text-xs text-gray-500">radhasharma243527ji@gmail.com</p>
+                                <h1>{localStorage.getItem('fname')} Kumar</h1>
+                                <p className="text-xs text-gray-500">vishalsharma243527@gmail.com</p>
                             </div>
                         </div>
                         <div className="flex items-center m-4 rounded-2xl">
                             <Image src={'/word/user.png'} alt="user" height={40} width={40} className="m-2 rounded-full" />
                             <div className="w-60">
-                                <h1>Anchal Sharma</h1>
-                                <p className="text-xs text-gray-500">anchalsharma243527ji@gmail.com</p>
+                                <h1>{localStorage.getItem('fname')} Kahol</h1>
+                                <p className="text-xs text-gray-500">vishalsharma243527ji@gmail.com</p>
                             </div>
                         </div>
                     </div>

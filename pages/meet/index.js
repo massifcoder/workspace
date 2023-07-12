@@ -34,7 +34,7 @@ export default function Meet() {
                     }
                     return res;
                 })
-        },22222000);
+        },1000000);
 
         return ()=>{
             clearInterval(interval);

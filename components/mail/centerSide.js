@@ -36,7 +36,7 @@ export default function CenterSide(props) {
             <div id="mails" className="overflow-scroll h-[500px]">
 
                 {
-                    props.showInbox ? props.mails === null ?  <div className="font-bold text-center my-4 text-xl">Loading...</div>
+                    props.showInbox ? props.mails == null ?  <div className="font-bold text-center my-4 text-xl">Loading...</div>
                     :  props.mails.map((value, index) => {
                         const desc = value.mail.description.slice(0, 50) + '...';
                         return (
@@ -54,7 +54,7 @@ export default function CenterSide(props) {
                                 <div className="ml-8 text-gray-700 mr-6" dangerouslySetInnerHTML={{ __html: desc }}></div>
                             </div>
                         )
-                    })  :  props.sendMail === null ?  <div className="font-bold text-center my-4 text-xl">Loading...</div>
+                    })  :  props.sendMail == null ?  <div className="font-bold text-center my-4 text-xl">Loading...</div>
                     :  props.sendMail.map((value, index) => {
                         const desc = value.mail.description.slice(0, 50) + '...';
                         return (

@@ -3,8 +3,21 @@ import Compose from "./working/compose"
 
 export default function RightSide(props) {
 
+    const handleDelte = ()=>{
+        const mails = props.mails[props.selected]
+        console.log(mails);
+        fetch('/api/mail/deleteMail',{
+            method:'POST',
+            body:JSON.stringify(mails)
+        })
+        const ar = props.mails.filter(item=>item!==props.mails[props.selected]);
+        props.setLatMails(ar);
+        if(props.selected===props.mails.length && props.selected!==0){
+            props.setSelected(props.selected-1);
+        }
+    }
 
-    if(props.mails !== null && props.sendMail !== null ){
+    if(props.mails != null && props.sendMail != null ){
         return (
             <div className="w-2/4 h-full p-3 pl-6 pr-12">
                 {props.showCompose? <Compose setShowCompose={props.setShowCompose}/>:null}
@@ -16,7 +29,7 @@ export default function RightSide(props) {
                         20 of Total
                     </div>
                     <div>
-                        <Image alt="de" src={'/mail/delete.png'} height={20} width={20} />
+                        {props.showInbox ? <Image onClick={handleDelte} alt="de" src={'/mail/delete.png'} height={20} width={20} />:null}
                     </div>
                 </div>
                 <hr />

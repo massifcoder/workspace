@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
-import NavBar from "../../../components/word/editor/NavBar";
-import Screen from "../../../components/word/editor/Screen";
+import NavBar from "../../../../components/word/editor/NavBar";
+import Screen from "../../../../components/word/editor/Screen";
 import { useEffect, useRef, useState } from "react";
 
 export default function File() {
@@ -11,8 +11,10 @@ export default function File() {
     const [userName,setUserName] = useState('Loading...');
     const [fname,setFname] = useState('Loading...');
     const [showComment, setShowComment] = useState(false);
+    const [tokens,setToken] = useState(null);
     useEffect(() => {
         const token = localStorage.getItem('token');
+        setToken(token);
         const name = localStorage.getItem('username');
         const fname = localStorage.getItem('fname');
         setFname(fname);
@@ -20,17 +22,23 @@ export default function File() {
         if (token === null) {
             router.push('/')
         }
-        setInterval(() => {
+        const clr = setInterval(() => {
             timeChange();
         }, 60000)
+
+        return ()=> clearInterval(clr);
     }, [])
     const timeChange = () => {
-        let editDiff = parseInt(Date.now() / 60000) - diff.current.value;
+        let fd = diff.current.value ? diff.current.value : 0;        
+        let editDiff = parseInt(Date.now() / 60000) - parseInt(fd);
         asn.current.value = editDiff;
     }
     const { slug } = router.query;
-    if (slug === 'file') {
-        return (
+    if (slug && slug[0] === tokens) {
+
+        const number = slug[1];
+
+            return (
             <div className="relative">
                 <input className="hidden" ref={diff} onChange={() => { }} value={parseInt(Date.now() / 60000)} />
                 <NavBar fname={fname} userName={userName} editorDiv={editorDiv} lastEdit={asn} setShowComment={setShowComment} />
@@ -40,6 +48,6 @@ export default function File() {
         )
     }
     return (<>
-        <div>Error 404</div>
+        <div>Error 4043</div>
     </>)
 }

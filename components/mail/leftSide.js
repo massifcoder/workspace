@@ -41,14 +41,14 @@ export default function LeftSide(props) {
                         <Image alt="ind" src={'/mail/inbox.png'} width={20} height={20} />
                     </div>
                     <div>Inbox</div>
-                    <div>{ props.mails === null ? 0 : props.mails.length}</div>
+                    <div>{ props.mails == null ? 0 : props.mails.length}</div>
                 </div>
                 <div onClick={()=>{props.setShowInbox(false)}} className={`flex ${props.showInbox ?'':'outline bg-white'} my-1 outline-1 outline-gray-300 hover:bg-white w-[250px] p-3 rounded-xl px-4 justify-between`}>
                     <div>
                         <Image alt="sen" src={'/mail/sent.png'} width={20} height={20} />
                     </div>
                     <div>Sent Mails</div>
-                    <div>{ props.sendMail === null ? 0 :  props.sendMail.length }</div>
+                    <div>{ props.sendMail == null ? 0 :  props.sendMail.length }</div>
                 </div>
                 <div className="flex hover:outline outline-1 outline-gray-300 hover:bg-white w-[250px] p-3 rounded-xl px-4 justify-between">
                     <div>

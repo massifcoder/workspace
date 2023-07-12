@@ -30,7 +30,7 @@ function NavBar(props) {
     const [showShare, setShowShare] = useState(false);
     const shareHandle = async () => {
         let email_id = inpref.current.value;
-        sendRef.current.innerHTML = '<svg class="animate-spin h-5 w-5 mr-3 bg-white border border-2 rounded-md border-blue-800" viewBox="0 0 24 24"></svg>Sending'
+        sendRef.current.innerHTML = '<svg class="animate-spin h-5 w-5 mr-3 bg-white border-2 rounded-md border-blue-800" viewBox="0 0 24 24"></svg>Sending'
         await fetch('/api/word/share',{method:'POST',body:JSON.stringify({email:email_id})}).then((response)=>{
             return response
         }).then((response)=>{
@@ -67,7 +67,7 @@ function NavBar(props) {
                     <div className="flex mx-1 text-sm text-gray-800">
                         <div onMouseLeave={()=>{setShowFile(false)}}>
                             <div onMouseDown={() => { setShowFile(!showFile) }} className="px-1 select-none hover:bg-gray-200 rounded-sm">File</div>
-                            {showFile ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                            {showFile ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
                                     fileOption.map((value)=>{
                                         return (<Option key={value} editorDiv={props.editorDiv} titleRef={titleRef} shareHandle={setShowShare} inpref={inpref} onclick={()=>{setShowFile(!showFile)}} option={value} />
@@ -78,7 +78,7 @@ function NavBar(props) {
                         </div>
                         <div onMouseLeave={()=>{setShowEdit(false)}}>
                             <div onMouseDown={() => { setShowEdit(!showEdit) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Edit</div>
-                            {showEdit ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                            {showEdit ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
                                     editOption.map(value=>{
                                         return <Option onclick={()=>{setShowEdit(!showEdit)}} option={value}/>
@@ -88,7 +88,7 @@ function NavBar(props) {
                         </div>
                         <div onMouseLeave={()=>{setShowView(false)}}>
                             <div onMouseDown={() => { setShowView(!showView) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">View</div>
-                            {showView ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                            {showView ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
                                     viewOption.map(value=>{
                                         return <Option onclick={()=>{setShowView(!showView)}} option={value}/>
@@ -98,7 +98,7 @@ function NavBar(props) {
                         </div>
                         <div onMouseLeave={()=>{setShowInsert(false)}}>
                             <div onMouseDown={() => { setShowInsert(!showInsert) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Insert</div>
-                            {showInsert ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                            {showInsert ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
                                     insertOption.map(value=>{
                                         return <Option onclick={()=>{setShowInsert(!showInsert)}} option={value}/>
@@ -108,7 +108,7 @@ function NavBar(props) {
                         </div>
                         <div onMouseLeave={()=>{setShowFormat(false)}}>
                             <div onMouseDown={() => { setShowFormat(!showFormat) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Format</div>
-                            {showFormat ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                            {showFormat ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                             {
                                     formatOption.map(value=>{
                                         return <Option onclick={()=>{setShowFormat(!showFormat)}} option={value}/>
@@ -118,7 +118,7 @@ function NavBar(props) {
                         </div>
                         <div onMouseLeave={()=>{setShowTools(false)}}>
                             <div onMouseDown={() => { setShowTools(!showTools) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Tools</div>
-                            {showTools ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                            {showTools ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                             {
                                     toolOption.map(value=>{
                                         return <Option onclick={()=>{setShowTools(!showTools)}} option={value}/>
@@ -128,7 +128,7 @@ function NavBar(props) {
                         </div>
                         <div onMouseLeave={()=>{setShowExtensions(false)}}>
                             <div onMouseDown={() => { setShowExtensions(!showExtensions) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Extensions</div>
-                            {showExtensions ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                            {showExtensions ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
                                     extensionOption.map(value=>{
                                         return <Option onclick={()=>{setShowExtensions(!showExtensions)}} option={value}/>
@@ -138,7 +138,7 @@ function NavBar(props) {
                         </div>
                         <div onMouseLeave={()=>{setShowHelp(false)}}>
                             <div onMouseDown={() => { setShowHelp(!showHelp) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Help</div>
-                            {showHelp ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl px-3 z-50 p-3 px-4 bg-white shadow shadow-2xl">
+                            {showHelp ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
                                     helpOption.map(value=>{
                                         return <Option onclick={()=>{setShowHelp(!showHelp)}} option={value}/>
@@ -170,7 +170,7 @@ function NavBar(props) {
                         </div>
                     </div>
                     {showShare ? <div className="absolute m-2 z-50 right-0 outline outline-1 outline-blue-400 rounded-xl">
-                        <div className="bg-white rounded-xl shadow shadow-2xl p-3">
+                        <div className="bg-white rounded-xl shadow-2xl p-3">
                             <div className="flex items-center">
                                 Enter the Email address of the User.
                             </div>
@@ -180,7 +180,7 @@ function NavBar(props) {
                             <div className="flex my-2">
                                 <div onClick={shareHandle} ref={sendRef} className="flex rounded-full cursor-pointer mx-2 px-3 p-1 bg-[#c2e7ff] ">
                                 Send</div>
-                                <div onClick={() => { setShowShare(false) }} className="rounded-full mx-2 text-blue-800 cursor-pointer outline outline-1 outline-gray-600 px-3 p-1 text-gray-700">Cancel</div>
+                                <div onClick={() => { setShowShare(false) }} className="rounded-full mx-2 cursor-pointer outline outline-1 outline-gray-600 px-3 p-1 text-gray-700">Cancel</div>
                             </div>
                         </div>
                     </div>:null}

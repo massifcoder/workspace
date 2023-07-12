@@ -94,7 +94,7 @@ function Screen(props) {
     return (
         <div>
             <div className="print:hidden flex text-gray-800 text-xs justify-between items-center">
-                <div className="flex items-center space-x-4 items-center ml-6">
+                <div className="flex space-x-4 items-center ml-6">
                     <div className="hover:bg-gray-300 rounded-sm p-1" onClick={(event)=>{editHandler(event,'undo')}}>
                         <Image src='/word/undo1.png' alt='undo' height={15} width={15} />
                     </div>
@@ -203,7 +203,7 @@ function Screen(props) {
                 {/* This is the textarea component */}
                 <div className="relative justify-center bg-[#f8f9fa] border border-gray-200 min-h-screen h-full flex p-1">
                     {addingImage ? <div className="absolute">
-                        <div className="bg-white rounded-xl shadow shadow-2xl p-3">
+                        <div className="bg-white rounded-xl p-3">
                             <div className=" m-2 font-bold w-full text-center">
                                 Add URL of Photo
                             </div>
@@ -211,14 +211,14 @@ function Screen(props) {
                             <p className="text-xs m-2 text-center">Make sure image is licenced...</p>
                             <div className="flex my-2 justify-around">
                                 <div className="rounded-full cursor-pointer mx-2 px-3 p-1 bg-[#c2e7ff] text-gray-700" onClick={() => { setAddImage(false); addImage() }}>Add Image</div>
-                                <div className="rounded-full mx-2 text-blue-800 cursor-pointer outline outline-1 outline-gray-600 px-3 p-1 text-gray-700" onClick={() => { setAddImage(false) }}>Cancel</div>
+                                <div className="rounded-full mx-2 cursor-pointer outline outline-1 outline-gray-600 px-3 p-1 text-gray-700" onClick={() => { setAddImage(false) }}>Cancel</div>
                             </div>
                         </div>
                     </div> : null}
                     <div className="w-1/5">
                         <Comment comit={props.showComment} addComit={props.setShowComment} />
                     </div>
-                    <div className={`w-3/5 scale-x-${editorScale} print:w-full min-h-screen h-full bg-white outline outline-1 outline-gray-200 border border-gray-300 p-16 pb-0 border border-white`}>
+                    <div className={`w-3/5 scale-x-${editorScale} print:w-full min-h-screen h-full bg-white outline outline-1 outline-gray-200 p-16 pb-0 border border-white`}>
                         <GrammarlyEditorPlugin clientId="client_VbBxTAR6euDX3wam8YLwZe">
                             <div id="print-section" ref={props.editorDiv} onKeyDown={keyDownHandler} contentEditable={true} dangerouslySetInnerHTML={{ __html: editorContent }} className={`w-full h-screen tracking-${tight} font-${fontStyle} outline outline-0 text-${textAlign}`}></div>
                         </GrammarlyEditorPlugin>

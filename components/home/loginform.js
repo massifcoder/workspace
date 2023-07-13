@@ -88,26 +88,22 @@ export default function LoginForm() {
               await fetch('/api/home/signup',{
                 method:'POST',
                 body: JSON.stringify(data)
+              }).then((resp)=>{
+                toast.update(id,{
+                    render:"Logged In!",
+                    type:"success",
+                    isLoading:false
+                  })
+                  return resp.json();
+              }).then((resp)=>{
+                    const token = resp.token;
+                    localStorage.setItem('token',token);
+                    localStorage.setItem('username',data.mail);
+                    localStorage.setItem('fname',data.name);
+                    router.push('/word')
+                    return resp;
               })
-              toast.update(id,{
-                render:"Logged In!",
-                type:"success",
-                isLoading:false
-              })
-              const resp = await fetch('api/home/login',{
-                method:'POST',
-                body: JSON.stringify(data)
-              })
-              .then((resp)=>{
-                return resp.json();
-              })
-              .then((resp)=>{
-                return resp;
-              })
-              if(resp.success===true){
-                localStorage.setItem("token", resp.token);
-                router.push('/photos')
-              }
+              
             },
           });
           window.google.accounts.id.prompt();

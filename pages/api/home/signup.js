@@ -12,7 +12,7 @@ export default async function SignUp(req,res){
     const result = await collection.findOne({email_id:mail})
     if(result){
         console.log(result)
-        return res.status(200).json({'user':'ok'})
+        return res.status(200).json({'user':'ok',token:result._id.toString()})
     }
     const insert = await collection.insertOne(profile);
     return res.status(200).json({user:'no',token:insert.insertedId.toString()})

@@ -3,9 +3,9 @@ import RecentFile from "./RecentFile"
 import { useEffect, useState } from "react"
 
 export default function Recent(){    
-    const [files,setFiles] = useState([{name:'MonthlyReport',type:'docx',size:'18KB',modify:'1 month'},
-    {name:'Report',type:'docx',size:'20KB',modify:'1 week'},
-    {name:'Assignement',type:'docx',size:'16KB',modify:'2 month'}])
+    const [files,setFiles] = useState([{name:'MonthlyReport',type:'docx',size:'18',modify:'1 month'},
+    {name:'Report',type:'docx',size:'20',modify:'1 week'},
+    {name:'Assignement',type:'docx',size:'16',modify:'2 month'}])
 
 
     useEffect(()=>{

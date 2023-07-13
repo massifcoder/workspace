@@ -6,10 +6,11 @@ import Chat from "./Chat";
 
 function Screen(props) {
     
-    const sel = useRef();
-    const fnt = useRef();
-    const tgt = useRef();
-    const iul = useRef();
+    const sel = useRef(null);
+    const editorDiv = useRef(null);
+    const fnt = useRef(null);
+    const tgt = useRef(null);
+    const iul = useRef(null);
     const [addingImage, setAddImage] = useState(false);
     const [tight, setTight] = useState('normal');
     const [editorScale, setScale] = useState(100);
@@ -18,17 +19,43 @@ function Screen(props) {
     const [textAlign, setTextAlign] = useState('left');
     let editorContent = ""
     useEffect(() => {
-        props.editorDiv.current.focus();
+        editorDiv.current.focus();
+        if(props.preData !== 'l'){
+            editorDiv.current.innerHTML = props.preData;
+        }
+        else{
+            editorDiv.current.innerHTML = '<h1>Loading Your Data.Wait until load...</h1>'
+            const token = props.slug[0];
+            const fileName = props.slug[1];
+            fetch('/api/word/getFile',{
+                method:'POST',
+                body:JSON.stringify(
+                    {
+                        token:token,
+                        fileName:fileName
+                    }
+                )
+            }).then((resp)=>{
+                return resp.json();
+            }).then((resp)=>{
+                editorDiv.current.innerHTML = resp.data;
+                return resp;
+            })
+        }
     }, []);
+
+    const handleInputChange = (event)=>{
+        props.setData(event.target.innerHTML);
+    }
 
     const editHandler = (event, chang) => {
         event.preventDefault();
-        props.editorDiv.current.focus()
+        editorDiv.current.focus()
         if (chang === 'foreColor') {
             document.execCommand(chang, false, event.target.value)
         }
         else if (chang === 'fontSize') {
-            var siz = window.getComputedStyle(props.editorDiv.current).getPropertyValue('font-size')
+            var siz = window.getComputedStyle(editorDiv.current).getPropertyValue('font-size')
             document.execCommand(chang, null, parseInt(siz) + 1)
         }
         else if (chang === 'decreaseFontSize') {
@@ -80,9 +107,9 @@ function Screen(props) {
         let url = iul.current.value;
         console.log(url)
         if (document.queryCommandSupported('insertImage')) {
-            props.editorDiv.current.focus();
+            editorDiv.current.focus();
             document.execCommand('insertImage', false, url);
-            const images = props.editorDiv.current.getElementsByTagName('img');
+            const images = editorDiv.current.getElementsByTagName('img');
             const newImage = images[images.length - 1];
             newImage.style.width = '200px';
             newImage.style.height = 'auto';
@@ -166,9 +193,6 @@ function Screen(props) {
                             |
                         </div>
                     </div>
-                    {/* <div className="hover:bg-gray-300 rounded-sm p-1">
-                        <Image src='/link.png' alt='marker' height={18} width={18} />
-                    </div> */}
                     <div onClick={() => { props.setShowComment(!props.showComment) }} className="hover:bg-gray-300 rounded-sm p-1">
                         <Image src='/word/chat.png' alt='marker' height={16} width={16} />
                     </div>
@@ -190,7 +214,6 @@ function Screen(props) {
                         <Image src='/word/right-align.png' alt='marker' height={16} width={16} />
                     </div>
                 </div>
-                {/* </div> */}
 
                 <div className="mr-20">
                     <div className="bg-blue-100 text-blue-500 px-4 p-1 rounded-sm text-[15px]">
@@ -220,7 +243,7 @@ function Screen(props) {
                     </div>
                     <div className={`w-3/5 scale-x-${editorScale} print:w-full min-h-screen h-full bg-white outline outline-1 outline-gray-200 p-16 pb-0 border border-white`}>
                         <GrammarlyEditorPlugin clientId="client_VbBxTAR6euDX3wam8YLwZe">
-                            <div id="print-section" ref={props.editorDiv} onKeyDown={keyDownHandler} contentEditable={true} dangerouslySetInnerHTML={{ __html: editorContent }} className={`w-full h-screen tracking-${tight} font-${fontStyle} outline outline-0 text-${textAlign}`}></div>
+                            <div id="print-section" onInput={handleInputChange} ref={editorDiv} onKeyDown={keyDownHandler} contentEditable={true} dangerouslySetInnerHTML={{ __html: editorContent }} className={`w-full h-screen tracking-${tight} font-${fontStyle} outline outline-0 text-${textAlign}`}></div>
                         </GrammarlyEditorPlugin>
                     </div>
                     <div className="w-1/5">

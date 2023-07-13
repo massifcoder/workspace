@@ -8,24 +8,8 @@ export default function Option(props) {
         router.push('/word')
     }
     const Save = () => {
-        
-    }
-
-    const handleSave = ()=>{
-        const token = localStorage.getItem('token')
-        fetch('/api/word/storingFile', { method: 'POST', body: JSON.stringify({
-            token:token,
-            data : 'Hi ai m',
-            name : 'assignment'
-        }) })
-            .then((resp) => {
-                return resp.json();
-            }).then((resp) => {
-                if (resp.status === true) {
-                    router.push('/word')
-                }
-                return resp
-            })
+        props.setShowSave(!props.showSave);
+        props.titleRef.current.focus();
     }
 
     const Open = () => {
@@ -139,6 +123,8 @@ export default function Option(props) {
     }
 
     return (
-        <div onClick={() => { clickHandle(); props.onclick() }} className="mx-4 select-none hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">{props.option}</div>
+        <div onClick={() => { clickHandle(); props.onclick() }} className="mx-4 select-none hover:bg-gray-300 w-40 p-1 px-2 my-1 rounded-md">
+            {props.option}
+            </div>
     )
 }

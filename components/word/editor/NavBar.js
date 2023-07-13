@@ -1,12 +1,11 @@
 import Image from "next/image"
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Option from "./dialog/Option";
-import { useRouter } from "next/router";
 import Account from "../../common/account";
+import Save from "./dialog/Save";
 
 function NavBar(props) {
-    const router = useRouter();
     const inpref = useRef();
     const sendRef = useRef();
     const titleRef = useRef();
@@ -19,6 +18,7 @@ function NavBar(props) {
     const extensionOption = ['Add Ons','App Script']
     const helpOption = ['Help','Docs']
     const [showFile, setShowFile] = useState(false);
+    const [showSave,setShowSave] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const [showView, setShowView] = useState(false);
     const [showInsert, setShowInsert] = useState(false);
@@ -49,6 +49,13 @@ function NavBar(props) {
             return error;
         })
     }
+
+    useEffect(()=>{
+        if(props.preData ==='l'){
+            titleRef.current.value = props.tit;
+        }
+    },[])
+
     return (
         <div className="print:hidden relative flex justify-between text-gray-600 ">
             <div className="flex justify-center items-center space-y-2 p-2">
@@ -70,11 +77,17 @@ function NavBar(props) {
                             {showFile ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
                                     fileOption.map((value)=>{
-                                        return (<Option key={value} editorDiv={props.editorDiv} titleRef={titleRef} shareHandle={setShowShare} inpref={inpref} onclick={()=>{setShowFile(!showFile)}} option={value} />
+                                        return (<Option setShowSave={setShowSave} titleRef={titleRef} showSave={showSave} key={value} shareHandle={setShowShare} inpref={inpref} onclick={()=>{setShowFile(!showFile)}} option={value} />
                                         )
                                     })
                                 }
+                                
                                 </div> : null}
+                                {
+                                    showSave ? <div className="absolute top-20 z-50">
+                                        <Save titleRef={titleRef} Edata={props.Edata} setShowSave={setShowSave} showSave={showSave}/>
+                                    </div> : null
+                                }
                         </div>
                         <div onMouseLeave={()=>{setShowEdit(false)}}>
                             <div onMouseDown={() => { setShowEdit(!showEdit) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Edit</div>

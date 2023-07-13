@@ -33,16 +33,16 @@ export default function RecentFile(props) {
     return (
         <>
                 <div className="text-gray-500 cursor-pointer grid grid-cols-4 gap-4 mt-4 mb-2">
-                    <div className="font-bold text-gray-600"><Link href={`/word/file/${token}`}>{props.value.name}</Link></div>
+                    <div className="font-bold text-gray-600"><Link href={`/word/file/${token}/${props.value.name}`}>{props.value.name}</Link></div>
                     <div>{props.value.type}</div>
-                    <div>{props.value.size}</div>
+                    <div>{props.value.size}KB</div>
                     <div className="relative">
                         <div className="grid grid-cols-2 space-x-2">
                             <div>{props.value.modify}</div>
                             <div className="relative">
                                 <Image alt="setting" onMouseDown={setingShow} src={'/word/temp/dot.png'} className="p-1" height={10} width={20} />
                                 {show ? <div className="absolute flex flex-col space-y-2 text-center bg-white left-4 p-4 rounded-xl outline outline-1 outline-gray-400">
-                                    <Link href={`/word/file/${token}`}>
+                                    <Link href={`/word/file/${token}/${props.value.name}`}>
                                         <h1 className="text-blue-500">Edit</h1>
                                     </Link>
                                     <hr />

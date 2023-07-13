@@ -83,7 +83,6 @@ export default function LoginForm() {
                 mail : responsePayload.email,
                 password : responsePayload.sub
               }
-              console.log(data);
               const id = toast.loading('Please wait....')
               await fetch('/api/home/signup',{
                 method:'POST',

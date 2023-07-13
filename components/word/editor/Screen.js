@@ -250,7 +250,7 @@ function Screen(props) {
                         <Comment comit={props.showComment} addComit={props.setShowComment} />
                     </div>
                     <div className={`w-3/5 scale-x-${editorScale} print:w-full min-h-screen h-full bg-white outline outline-1 outline-gray-200 p-16 pb-0 border border-white`}>
-                        <GrammarlyEditorPlugin clientId="client_VbBxTAR6euDX3wam8YLwZe">
+                        <GrammarlyEditorPlugin clientId={process.env.GRAMMERLY_ID}>
                             <div id="print-section" onInput={handleInputChange} ref={editorDiv} onKeyDown={keyDownHandler} contentEditable={true} dangerouslySetInnerHTML={{ __html: editorContent }} className={`w-full h-screen tracking-${tight} font-${fontStyle} outline outline-0 text-${textAlign}`}></div>
                         </GrammarlyEditorPlugin>
                     </div>

@@ -1,9 +1,17 @@
 import Image from "next/image"
 import Recent from "./Recent"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
 export default function Files() {
-    const token = localStorage.getItem('token');
+    const [token,setToken] = useState('')
+
+    useEffect(()=>{
+        setToken(localStorage.getItem('token'));
+    },[setToken]);
+
+    if(token){
+
     return (
         <div className="w-1/2 px-4">
             <div className="flex justify-between py-6">
@@ -49,4 +57,12 @@ export default function Files() {
             <Recent />
         </div>
     )
+    }
+
+    else{
+        return (
+            <div>Loading...</div>
+        )
+    }
+
 }

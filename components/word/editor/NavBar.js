@@ -54,7 +54,7 @@ function NavBar(props) {
         if(props.preData ==='l'){
             titleRef.current.value = props.tit;
         }
-    },[])
+    })
 
     return (
         <div className="print:hidden relative flex justify-between text-gray-600 ">
@@ -76,8 +76,8 @@ function NavBar(props) {
                             <div onMouseDown={() => { setShowFile(!showFile) }} className="px-1 select-none hover:bg-gray-200 rounded-sm">File</div>
                             {showFile ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
-                                    fileOption.map((value)=>{
-                                        return (<Option setShowSave={setShowSave} titleRef={titleRef} showSave={showSave} key={value} shareHandle={setShowShare} inpref={inpref} onclick={()=>{setShowFile(!showFile)}} option={value} />
+                                    fileOption.map((value,index)=>{
+                                        return (<Option key={index} setShowSave={setShowSave} titleRef={titleRef} showSave={showSave} shareHandle={setShowShare} inpref={inpref} onclick={()=>{setShowFile(!showFile)}} option={value} />
                                         )
                                     })
                                 }
@@ -93,8 +93,8 @@ function NavBar(props) {
                             <div onMouseDown={() => { setShowEdit(!showEdit) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Edit</div>
                             {showEdit ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
-                                    editOption.map(value=>{
-                                        return <Option onclick={()=>{setShowEdit(!showEdit)}} option={value}/>
+                                    editOption.map(value,index=>{
+                                        return <Option key={index} onclick={()=>{setShowEdit(!showEdit)}} option={value}/>
                                     })
                                 }    
                             </div> : null}
@@ -103,8 +103,8 @@ function NavBar(props) {
                             <div onMouseDown={() => { setShowView(!showView) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">View</div>
                             {showView ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
-                                    viewOption.map(value=>{
-                                        return <Option onclick={()=>{setShowView(!showView)}} option={value}/>
+                                    viewOption.map(value,index=>{
+                                        return <Option key={index} onclick={()=>{setShowView(!showView)}} option={value}/>
                                     })
                                 }    
                             </div> : null}
@@ -113,8 +113,8 @@ function NavBar(props) {
                             <div onMouseDown={() => { setShowInsert(!showInsert) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Insert</div>
                             {showInsert ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
-                                    insertOption.map(value=>{
-                                        return <Option onclick={()=>{setShowInsert(!showInsert)}} option={value}/>
+                                    insertOption.map(value,index=>{
+                                        return <Option key={index} onclick={()=>{setShowInsert(!showInsert)}} option={value}/>
                                     })
                                 }
                             </div> : null}
@@ -123,8 +123,8 @@ function NavBar(props) {
                             <div onMouseDown={() => { setShowFormat(!showFormat) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Format</div>
                             {showFormat ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                             {
-                                    formatOption.map(value=>{
-                                        return <Option onclick={()=>{setShowFormat(!showFormat)}} option={value}/>
+                                    formatOption.map(value,index=>{
+                                        return <Option key={index} onclick={()=>{setShowFormat(!showFormat)}} option={value}/>
                                     })
                                 }
                             </div> : null}
@@ -133,8 +133,8 @@ function NavBar(props) {
                             <div onMouseDown={() => { setShowTools(!showTools) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Tools</div>
                             {showTools ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                             {
-                                    toolOption.map(value=>{
-                                        return <Option onclick={()=>{setShowTools(!showTools)}} option={value}/>
+                                    toolOption.map(value,index=>{
+                                        return <Option key={index} onclick={()=>{setShowTools(!showTools)}} option={value}/>
                                     })
                                 }
                             </div> : null}
@@ -143,8 +143,8 @@ function NavBar(props) {
                             <div onMouseDown={() => { setShowExtensions(!showExtensions) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Extensions</div>
                             {showExtensions ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
-                                    extensionOption.map(value=>{
-                                        return <Option onclick={()=>{setShowExtensions(!showExtensions)}} option={value}/>
+                                    extensionOption.map(value,index=>{
+                                        return <Option key={index} onclick={()=>{setShowExtensions(!showExtensions)}} option={value}/>
                                     })
                                 }    
                             </div> : null}
@@ -153,8 +153,8 @@ function NavBar(props) {
                             <div onMouseDown={() => { setShowHelp(!showHelp) }} className="px-1 hover:bg-gray-200 select-none rounded-sm">Help</div>
                             {showHelp ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
-                                    helpOption.map(value=>{
-                                        return <Option onclick={()=>{setShowHelp(!showHelp)}} option={value}/>
+                                    helpOption.map(value,index=>{
+                                        return <Option key={index} onclick={()=>{setShowHelp(!showHelp)}} option={value}/>
                                     })
                                 }
                             </div> : null}

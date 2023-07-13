@@ -28,14 +28,15 @@ export default function File() {
         }, 60000)
 
         return ()=> clearInterval(clr);
-    }, [])
+    },[router])
+    
     const timeChange = () => {
         let fd = diff.current.value ? diff.current.value : 0;        
         let editDiff = parseInt(Date.now() / 60000) - parseInt(fd);
         asn.current.value = editDiff;
     }
     const { slug } = router.query;
-    if (slug && slug[0] === tokens) {
+    if (slug && slug[0] === tokens && slug[1]) {
 
         if(slug[1]==='resume'){
             preData = '<main style="font-family: Arial, sans-serif; margin: 0; padding: 20px;"><div style="text-align: center; margin-bottom: 20px;"><h1 style="font-size: 24px; font-weight: bold;">Your Name</h1><p style="font-size: 16px; margin-bottom: 10px;">Email: your-email@example.com | Phone: (123) 456-7890</p></div><section style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin-bottom: 10px;">Summary</h2><p style="font-size: 14px;">A brief summary of your skills, experience, and career goals.</p></section><section style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin-bottom: 10px;">Experience</h2><h3 style="font-size: 16px; margin-bottom: 5px;">Job Title</h3><p style="font-size: 14px;"><strong>Company Name</strong> | City, State</p><p style="font-size: 14px;"><em>Start Date - End Date</em></p><ul style="font-size: 14px;"><li>Responsibility or achievement</li><li>Responsibility or achievement</li><li>Responsibility or achievement</li></ul></section><section style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin-bottom: 10px;">Education</h2><h3 style="font-size: 16px; margin-bottom: 5px;">Degree</h3><p style="font-size: 14px;"><strong>University Name</strong> | City, State</p><p style="font-size: 14px;"><em>Graduation Year</em></p></section><section style="margin-bottom: 20px;"><h2 style="font-size: 20px; margin-bottom: 10px;">Skills</h2><ul style="font-size: 14px;"><li>Skill 1</li><li>Skill 2</li><li>Skill 3</li></ul></section></main>'

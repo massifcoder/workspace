@@ -19,6 +19,7 @@ function Screen(props) {
     const [textAlign, setTextAlign] = useState('left');
     let editorContent = ""
     useEffect(() => {
+        const abortController = new AbortController();
         editorDiv.current.focus();
         if(props.preData !== 'l'){
             editorDiv.current.innerHTML = props.preData;
@@ -27,7 +28,9 @@ function Screen(props) {
             editorDiv.current.innerHTML = '<h1>Loading Your Data.Wait until load...</h1>'
             const token = props.slug[0];
             const fileName = props.slug[1];
+            const signal = abortController.signal;
             fetch('/api/word/getFile',{
+                signal:signal,
                 method:'POST',
                 body:JSON.stringify(
                     {
@@ -42,6 +45,11 @@ function Screen(props) {
                 return resp;
             })
         }
+
+        return ()=>{
+            abortController.abort();
+        }
+
     }, []);
 
     const handleInputChange = (event)=>{

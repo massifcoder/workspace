@@ -9,6 +9,7 @@ export default async function GetFile(req,res){
     const so = await userCollection.findOne({token:token,name:fileName});
     if(so){
         res.status(200).send({data:so.data})
+        return;
     }
     res.status(200).send({data:'Empty'})
 }

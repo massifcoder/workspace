@@ -42,8 +42,7 @@ export default function Mail() {
             fetchData();
             const interval = setInterval(fetchData, 30000);
             return () => clearInterval(interval);
-        },
-        []);
+        });
 
     return (
         <div className="w-screen bg-[#e3e5e7] p-6 min-h-screen h-fit">

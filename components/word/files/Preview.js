@@ -14,7 +14,7 @@ export default function Preview(){
             <hr className="mt-6 mb-3"/>
             <h1 className="font-bold mb-2">Description</h1>
             <div className="text-gray-600">
-                It's also a particularly highly collaborative effort that utilizes the strength of all of the different team members involved.
+                Its also a particularly highly collaborative effort that utilizes the strength of all of the different team members involved.
             </div>
             <hr className="mt-6 mb-3"/>
             <h1 className="font-bold mb-2">Properties</h1>

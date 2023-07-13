@@ -19,7 +19,7 @@ export default function Home() {
     if (token === null || name === null || fname === null) {
       router.push('/')
     }
-  }, [])
+  },[setUserName,setFname])
   return (
     <div>
       <NavBar userName={userName} fname={fname}/>

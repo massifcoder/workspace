@@ -11,7 +11,7 @@ export default function LeftSide(props) {
         const userNam = localStorage.getItem('username');
         setFname(fnam);
         setUserName(userNam);
-    })
+    },[])
     return (
         <div className="w-1/4 h-fit p-8 cursor-pointer rounded-l-2xl bg-[#f4f6f8]">
             <div className="flex items-center">

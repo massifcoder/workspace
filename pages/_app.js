@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
   return <>
       <Head>
         <link rel="icon" href="/home/sideImage.png" />
-        <title>Cloud Gallery</title>
+        <title>Nanda Docs</title>
       </Head>
     <Component {...pageProps} />
     <Script src='https://accounts.google.com/gsi/client'/>

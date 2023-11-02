@@ -16,8 +16,8 @@ export default function LoginForm() {
         }
         const passWord = passRef.current.value;
         const mail = mailRef.current.value;
+        const id = toast.loading('Please wait....')
         if(login){
-            const id = toast.loading('Please wait....')
             fetch('/api/home/login',{method:'POST',body:JSON.stringify({mail:mail,password:passWord})})
             .then((resp)=>{
                 return resp.json();

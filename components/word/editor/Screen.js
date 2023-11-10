@@ -50,6 +50,7 @@ function Screen(props) {
             abortController.abort();
         }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleInputChange = (event)=>{

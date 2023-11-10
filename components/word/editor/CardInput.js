@@ -13,7 +13,7 @@ export default function CardInput(props){
         props.addComit(false)
     }
     return (
-        <div className="bg-white rounded-xl shadow shadow-2xl p-3">
+        <div className="bg-white rounded-xl shadow-2xl p-3">
             <div className="flex items-center">
                 <div>
                     <Image height={25} alt="image" className="m-1" width={35} src={'/word/user.png'}/>

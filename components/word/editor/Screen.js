@@ -47,7 +47,7 @@ function Screen(props) {
         }
 
         return ()=>{
-            abortController.abort();
+            //abortController.abort();
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

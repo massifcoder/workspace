@@ -4,9 +4,10 @@ import Screen from "../../../../components/word/editor/Screen";
 import { useEffect, useRef, useState } from "react";
 
 export default function File() {
-    const diff = useRef();
-    const asn = useRef();
-    const router = useRouter();
+    const diff = useRef(null);
+    const editorDiv = useRef(null);
+    const asn = useRef(null);
+    const router = useRouter(null);
     const [data,setData] = useState('');
     let preData = '';
     const [userName,setUserName] = useState('Loading...');
@@ -57,9 +58,9 @@ export default function File() {
             return (
             <div className="relative">
                 <input className="hidden" ref={diff} onChange={() => { }} value={parseInt(Date.now() / 60000)} />
-                <NavBar preData={preData} tit={slug[1]} fname={fname} userName={userName} Edata={data} lastEdit={asn} setShowComment={setShowComment} />
+                <NavBar editorDivRef={editorDiv} preData={preData} tit={slug[1]} fname={fname} userName={userName} Edata={data} lastEdit={asn} setShowComment={setShowComment} />
                 <hr />
-                <Screen slug={slug} preData={preData} setData={setData} diff={diff} timeChange={timeChange} showComment={showComment} setShowComment={setShowComment} />
+                <Screen ref={editorDiv} slug={slug} preData={preData} setData={setData} diff={diff} timeChange={timeChange} showComment={showComment} setShowComment={setShowComment} />
             </div>
         )
     }

@@ -22,6 +22,9 @@ export default function Option(props) {
         props.shareHandle(true);
     }
     const Download = async () => {
+        if(!props.editorDiv || !props.editorDiv.current){
+            return;
+        }
         const htmlfile = props.editorDiv.current.outerHTML;
         var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com;office:word' xmlns='http://www.w3.ord/TR/REC-html40'>" + 
         "<head>" +
@@ -40,19 +43,6 @@ export default function Option(props) {
 
     const Rename = () => {
         props.titleRef.current.focus();
-    }
-    const Pdf = async () => {
-        const htmlfile = props.editorDiv.current.outerHTML;
-        fetch('/api/word/pdf',{method:"POST",body:JSON.stringify({'html':htmlfile})})
-        .then(response=>response.blob())
-        .then(blob=>{
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'generated.pdf';
-            link.click();
-            URL.revokeObjectURL(url);
-        })
     }
     const Trash = () => {
         router.push('/word')
@@ -88,9 +78,6 @@ export default function Option(props) {
         }
         else if (props.option === 'Rename') {
             Rename();
-        }
-        else if (props.option === 'Download as PDF') {
-            Pdf();
         }
         else if (props.option === 'Move to Trash') {
             Trash();

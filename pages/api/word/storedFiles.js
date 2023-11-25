@@ -7,6 +7,5 @@ export default async function StoredFile(req,res){
     const db = Client.db('test')
     const userCollection = db.collection('documents');
     const so = await userCollection.find({token:token}).toArray();
-    console.log(so);
     res.status(200).send({'files':so});
 }

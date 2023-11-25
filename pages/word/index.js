@@ -19,6 +19,7 @@ export default function Home() {
     if (token === null || name === null || fname === null) {
       router.push('/')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[setUserName,setFname])
   return (
     <div>

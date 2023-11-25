@@ -8,8 +8,9 @@ import Save from "./dialog/Save";
 function NavBar(props) {
     const inpref = useRef();
     const sendRef = useRef();
+    const editorDiv = props.editorDivRef;
     const titleRef = useRef();
-    const fileOption = ['New','Open','Save','Share','Email','Download','Rename','Download as PDF','Move to Trash','Page Setup','Page Preview','Print']
+    const fileOption = ['New','Open','Save','Share','Email','Download','Rename','Move to Trash','Page Setup','Page Preview','Print']
     const editOption = ['Undo','Redo','Cut','Copy','Paste','Paste without Formatting','Select All','Delete','Find And Replace']
     const viewOption = ['Mode','Show Print Layout','Show Rule','Show Outline','Show Equation','Toolbar','Full Screen']
     const insertOption = ['Image','Table','Drawing','Chart','Horizontal Line','Emoji','Header','Footer','Break']
@@ -77,7 +78,7 @@ function NavBar(props) {
                             {showFile ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
                                     fileOption.map((value,index)=>{
-                                        return (<Option key={index} setShowSave={setShowSave} titleRef={titleRef} showSave={showSave} shareHandle={setShowShare} inpref={inpref} onclick={()=>{setShowFile(!showFile)}} option={value} />
+                                        return (<Option key={index} editorDiv={editorDiv}  setShowSave={setShowSave} titleRef={titleRef} showSave={showSave} shareHandle={setShowShare} inpref={inpref} onclick={()=>{setShowFile(!showFile)}} option={value} />
                                         )
                                     })
                                 }
@@ -94,7 +95,7 @@ function NavBar(props) {
                             {showEdit ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
                                     editOption.map((value,index)=>{
-                                        return <Option key={index} onclick={()=>{setShowEdit(!showEdit)}} option={value}/>
+                                        return <Option key={index} editorDiv={editorDiv}  onclick={()=>{setShowEdit(!showEdit)}} option={value}/>
                                     })
                                 }    
                             </div> : null}
@@ -104,7 +105,7 @@ function NavBar(props) {
                             {showView ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
                                     viewOption.map((value,index)=>{
-                                        return <Option key={index} onclick={()=>{setShowView(!showView)}} option={value}/>
+                                        return <Option key={index} editorDiv={editorDiv}  onclick={()=>{setShowView(!showView)}} option={value}/>
                                     })
                                 }    
                             </div> : null}
@@ -114,7 +115,7 @@ function NavBar(props) {
                             {showInsert ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
                                     insertOption.map((value,index)=>{
-                                        return <Option key={index} onclick={()=>{setShowInsert(!showInsert)}} option={value}/>
+                                        return <Option key={index} editorDiv={editorDiv}  onclick={()=>{setShowInsert(!showInsert)}} option={value}/>
                                     })
                                 }
                             </div> : null}
@@ -124,7 +125,7 @@ function NavBar(props) {
                             {showFormat ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                             {
                                     formatOption.map((value,index)=>{
-                                        return <Option key={index} onclick={()=>{setShowFormat(!showFormat)}} option={value}/>
+                                        return <Option key={index} editorDiv={editorDiv}  onclick={()=>{setShowFormat(!showFormat)}} option={value}/>
                                     })
                                 }
                             </div> : null}
@@ -134,7 +135,7 @@ function NavBar(props) {
                             {showTools ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                             {
                                     toolOption.map((value,index)=>{
-                                        return <Option key={index} onclick={()=>{setShowTools(!showTools)}} option={value}/>
+                                        return <Option key={index} editorDiv={editorDiv}  onclick={()=>{setShowTools(!showTools)}} option={value}/>
                                     })
                                 }
                             </div> : null}
@@ -144,7 +145,7 @@ function NavBar(props) {
                             {showExtensions ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
                                     extensionOption.map((value,index)=>{
-                                        return <Option key={index} onclick={()=>{setShowExtensions(!showExtensions)}} option={value}/>
+                                        return <Option key={index} editorDiv={editorDiv}  onclick={()=>{setShowExtensions(!showExtensions)}} option={value}/>
                                     })
                                 }    
                             </div> : null}
@@ -154,7 +155,7 @@ function NavBar(props) {
                             {showHelp ? <div className="cursor-pointer absolute text-center outline outline-1 outline-gray-200 rounded-2xl z-50 p-3 px-4 bg-white shadow-2xl">
                                 {
                                     helpOption.map((value,index)=>{
-                                        return <Option key={index} onclick={()=>{setShowHelp(!showHelp)}} option={value}/>
+                                        return <Option key={index} editorDiv={editorDiv}  onclick={()=>{setShowHelp(!showHelp)}} option={value}/>
                                     })
                                 }
                             </div> : null}

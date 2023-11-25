@@ -23,7 +23,7 @@ export default function CardInput(props){
                 </div>
             </div>
             <div className="text-md m-2">
-                <input ref={inpref} type="text" className="p-1 h-fit px-4 rounded-full outline outline-1.5 outline-blue-400"/>
+                <input ref={inpref} type="text" className="p-1 h-fit px-4 w-full rounded-full outline outline-1.5 outline-blue-400"/>
             </div>
             <div className="flex my-2">
                 <div onClick={handleComment} className="rounded-full cursor-pointer mx-2 px-3 p-1 bg-[#c2e7ff] text-gray-700">Comment</div>

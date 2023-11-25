@@ -55,7 +55,7 @@ export default function Chat() {
                 })}
             </div>
             <div className={`my-1 bg-white ${showChat ? 'hidden': ''} outline outline-1 outline-gray-300 p-1.5 rounded-2xl shadow-2xl h-16 flex justify-center items-center`}>
-                <div className="bg-gray-100 outline outline-1 h-12 outline-gray-300 p-1.5 rounded-2xl flex w-full">
+                <div className="bg-gray-100 outline outline-1 h-12 outline-gray-300 items-center p-1.5 rounded-2xl flex w-full">
                     <input readOnly={readon} ref={msgInpt} onKeyDown={handleEnterKey} type="text" placeholder="Type here..." className="bg-transparent px-2 outline outline-0"/>
                     <div onMouseDown={sendMsg}>
                         <Image src={'/word/send.png'} height={40} width={40} alt="send"/>

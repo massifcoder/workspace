@@ -13,7 +13,7 @@ export default function CardInput(props){
         props.addComit(false)
     }
     return (
-        <div className="bg-white rounded-xl shadow-2xl p-3">
+        <div className="bg-white outline outline-blue-400 rounded-xl shadow-2xl p-3">
             <div className="flex items-center">
                 <div>
                     <Image height={25} alt="image" className="m-1" width={35} src={'/word/user.png'}/>
@@ -27,7 +27,7 @@ export default function CardInput(props){
             </div>
             <div className="flex my-2">
                 <div onClick={handleComment} className="rounded-full cursor-pointer mx-2 px-3 p-1 bg-[#c2e7ff] text-gray-700">Comment</div>
-                <div onClick={()=>{props.addComit(false)}} className="rounded-full mx-2 text-blue-800 cursor-pointer outline outline-1 outline-gray-600 px-3 p-1 text-gray-700">Cancel</div>
+                <div onClick={()=>{props.addComit(false)}} className="rounded-full mx-2 cursor-pointer outline outline-1 outline-gray-600 px-3 p-1 text-gray-700">Cancel</div>
             </div>
         </div>
     )

@@ -375,7 +375,7 @@ const Screen = React.forwardRef((props, editorDiv) => {
         {/* Image addition option. */}
         <div className="relative justify-center bg-[#f8f9fa] border border-gray-200 min-h-screen h-full flex p-1">
           {addingImage ? (
-            <div className="absolute">
+            <div className="absolute outline outline-[#e7edf8] rounded-lg top-3 shadow-xl">
               <div className="bg-white rounded-xl p-3">
                 <div className=" m-2 font-bold w-full text-center">
                   Add URL of Photo

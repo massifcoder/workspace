@@ -15,7 +15,7 @@ export default async function Share(req,res){
         from: 'massifcoder@gmail.com',
         to: email_id,
         subject: 'You are Invited to Work Together.',
-        text: 'Respected, Vishal Sharma has invited you to work with him on the Nanda Doc word file, follow the link to start work https://workspace-sepia.vercel.app/.',
+        text: 'You are Invited to Work Together. Over Nanda Docs, you can share your work with your friends and colleagues. Over Nanda docs can use ai tools to help you in your work.',
       };
       try {
         const info = await transporter.sendMail(message);

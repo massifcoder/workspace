@@ -5,8 +5,8 @@ export default async function Share(req,res){
         host: 'smtp.gmail.com',
         port: 587,
         auth: {
-          user: 'massifcoder@gmail.com',
-          pass: 'nttvgrtvnioioiko',
+          user: process.env.MAIL,
+          pass: process.env.PASSWORD,
         },
       });
     const body = JSON.parse(req.body);
